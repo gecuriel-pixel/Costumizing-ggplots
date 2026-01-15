@@ -485,10 +485,24 @@ Please take a look at the feedback you got on the abalone figure (go back to the
 ### Q2.1: Pick an audience for your explanatory graph.
 
 This could be everything from another scientist to a policymaker, a community member, your grandmother, or anyone else. Please write a short explanation of who this person or group of people is.
+## Q2.1We decided to make our figure for a policy maker with the intentions of making sure there is legislation in place to limit the take of each of these abalone species and to keep legislation active if its already in place.
+```{r}
+ggplot(data = ab, mapping = aes(x = Year, y = Abalone_Landings_lbs)) +
+  geom_point(aes(color = Abalone_Species)) +
+  facet_wrap(Abalone_Species ~ .)
+```
+
 
 ------------------------------------------------------------------------
 
 ### Q2.2: Remake your original graph from Monday.
+```{r}
+#Q2.2
+ggplot(data = ab, mapping = aes(x = Year, y = Abalone_Landings_lbs)) +
+  geom_line(aes(color = Abalone_Species)) +
+  facet_wrap(Abalone_Species ~ .)
+```
+
 
 This should be as simple as copy and pasting the code you used on Monday (though remember to read in the data!). You'll need to create a new code block below here (remember how to do that?).
 
@@ -497,6 +511,7 @@ This should be as simple as copy and pasting the code you used on Monday (though
 ### Q2.3: Describe how you would like to modify the figure to make it more effective as an explanatory graph for the audience you chose in Q2.1.
 
 The past two activities have provided a brief sampling of the possibilities of customizing graphs using ggplot. You are welcome to explore other possibilities, too, either on your own or by talking with the teaching team.
+##Q2.3 We are changing it to a line graph in addition to increasing the line thickness and changing the color to the name of the species.
 
 
 ------------------------------------------------------------------------
@@ -504,10 +519,23 @@ The past two activities have provided a brief sampling of the possibilities of c
 ### Q2.4 Make the explanatory graph!
 
 Use what you have learned and make a Really Nice Graph for your audience! Go wild with making it pretty.
+```{r}
+
+  ?geom_line()
+
+```
+
+```{r}
+#Q2.4
+ggplot(data = ab, mapping = aes(x = Year, y = Abalone_Landings_lbs)) +
+  geom_line(aes(color = Abalone_Species), linewidth = 1) + 
+  scale_color_manual(values=c("Black"="black","Green"="green","Pink"="pink","Red"="red","While"="blue"))
+  facet_wrap(Abalone_Species ~ .)
+```
 
 
 ### Q2.5: Explain your graph
-
+##Q2.5 We decided that for a policymaker, it would be easier for them to see the colors matching up with species name, other than white (you can't see it) and we combined it onto one graph as policymakers would most likely be annoyed to see 5 when it could have been one.
 Write a couple sentences explaining the message you hope your audience will take away from seeing your graph.
 
 # Wrap up and submit
