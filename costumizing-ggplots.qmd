@@ -72,6 +72,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 ### Q1.1: Do you see a relationship?
 
 Does it look like there is a relationship between these variables? Describe the relationship.
+##Q1.1 It seems there is a relationship but because we are throwing species and sex all into the same figure, we can't be sure what the relationship could be for each of those variables.
 
 ------------------------------------------------------------------------
 
@@ -84,9 +85,10 @@ To address the second part of our question:
 1.  Change the aesthetics of this plot to color the points by the species of penguin and
 
 2.  Interpret the graph by describing the relationship you see and if this new visualization changes your answer to Q1.1.
-
+## Q1.2
 ```{r}
-
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point()
 ```
 
 The take-home message here is to be thorough with how you look at your data! If you ignore certain variables, you might miss important patterns (this is also crucial when deciding what statistical models we should run on our data, but more on that in a few weeks!).
@@ -104,10 +106,10 @@ Monday's Seaside Chat provided some practice with modifying the scales of the co
 ### Q1.3: Add your favorite colors to your graph
 
 Using your new color skills, modify the `scale_color_*` code below to include a new color selection!
-
+##Q1.3
 ```{r}
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_point(aes(color = species)) +
+  geom_point(aes(color = species, shape=species)) +
   scale_color_brewer(palette = "Dark2")
 ```
 
@@ -129,7 +131,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(color = species,
                  shape = species)) +
   scale_color_brewer(palette = "Dark2") +
-  scale_shape_manual(values = c(8, 11, 14))
+  scale_shape_manual(values = c(1, 11, 14))
 ```
 
 I personally like using shapes that have a black outline and are filled with the color, rather than being solid throughout. Change the manually selected shapes to 21, 22, and 24
@@ -223,7 +225,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   scale_fill_brewer(palette = "Dark2") +
   scale_color_brewer(palette = "Dark2") +
   scale_shape_manual(values = c(21, 22, 24)) +
-  scale_y_continuous(limits = c(0, 30))
+  scale_y_continuous(limits = c(0, NA))
 ```
 
 ### Q1.4: How to use the existing maximum for limits
@@ -279,6 +281,20 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 ### Q1.5: Change the legend title
 
 The legend title is currently not capitalized - add to the `labs()` function to change the title of the correct aesthetic(s) to make the legend title read "Species". (You may encounter an unexpected result - try and figure out what you can do to make it appear how you want! Hint: how many different aesthetics is `species` currently mapped to?).
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(fill = species,
+                 shape = species),
+             size = 2.5) +
+  geom_smooth(method = "lm",
+              aes(color = species)) +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2") +
+  scale_shape_manual(values = c(21, 22, 24)) +
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)", title="Species")
+```
+
 
 ## Themes
 
@@ -327,6 +343,11 @@ Depending on what the element is, you use a different `element_*()` function:
 Go to the `element_text()` help page: under "Usage" you will see what arguments each element function can modify, and if you scroll down to "Arguments," you can read more about the specifics of each element you can modify.
 
 What are the four options for the "face" of the text?
+## Q1.6
+```{r}
+?element_text
+#plain, italic, bold, bold.italic
+```
 
 ------------------------------------------------------------------------
 
