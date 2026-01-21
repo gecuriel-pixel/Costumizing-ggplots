@@ -1,7 +1,7 @@
 ---
 title: "Activity 4: Data visualization 2: Customizing plots"
 subtitle: Jan. 14th, 2026, Calvin Munson
-format: markdown_github
+format: pdf
 
 execute:
   warning: false
@@ -476,7 +476,7 @@ ggplot(data = penguins, aes(x = species, y = body_mass_g)) +
 
 # 2) Make your abalone figure ready for prime time!
 
-![Black abalone](blackabalone.jpg)
+
 
 Next, it's time to practice what you've learned! 
 
@@ -486,6 +486,11 @@ Please take a look at the feedback you got on the abalone figure (go back to the
 
 This could be everything from another scientist to a policymaker, a community member, your grandmother, or anyone else. Please write a short explanation of who this person or group of people is.
 ## Q2.1We decided to make our figure for a policy maker with the intentions of making sure there is legislation in place to limit the take of each of these abalone species and to keep legislation active if its already in place.
+
+```{r}
+ab<-read.csv("abalone_landings.csv")
+```
+
 ```{r}
 ggplot(data = ab, mapping = aes(x = Year, y = Abalone_Landings_lbs)) +
   geom_point(aes(color = Abalone_Species)) +
